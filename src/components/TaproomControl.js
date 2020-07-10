@@ -34,11 +34,6 @@ const listStyles = {
 class TaproomControl extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      masterKegList: [],
-      selectedKeg: null,
-    }
-
 
   }
   handleAddingNewKegToStock = (keg) => {
@@ -51,6 +46,7 @@ class TaproomControl extends React.Component {
     const thisKeg = this.props.masterKegList[id]
     const { dispatch } = this.props;
     const action = a.selectKeg(thisKeg);
+    console.log(this.props.selectedKeg)
     dispatch(action);
   }
 
@@ -86,8 +82,8 @@ class TaproomControl extends React.Component {
   render() {
     let kegSelected = null;
 
-    if (this.state.selectedKeg !== null) {
-      kegSelected = <KegDetail keg={this.state.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingDelete={this.handleClickingDelete} />
+    if (this.props.selectedKeg !== {}) {
+      kegSelected = <KegDetail keg={this.props.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingDelete={this.handleClickingDelete} />
     }
 
     return (
