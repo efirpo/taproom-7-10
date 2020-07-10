@@ -87,7 +87,6 @@ class TaproomControl extends React.Component {
     if (this.state.selectedKeg !== null) {
       kegSelected = <KegDetail keg={this.state.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingDelete={this.handleClickingDelete} />
     }
-    // KegList.forceUpdate(this.handleDrawingPint)
 
     return (
       <React.Fragment>

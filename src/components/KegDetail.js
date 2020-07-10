@@ -6,7 +6,7 @@ class KegDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      viewKegForm: false,
+      viewEditKegForm: false,
       deleteKegPrompt: false
     }
   }
@@ -19,7 +19,7 @@ class KegDetail extends React.Component {
   }
   onClickingToEdit = () => {
     this.setState({
-      viewKegForm: !this.state.viewKegForm
+      viewEditKegForm: !this.state.viewEditKegForm
     })
   }
 
@@ -33,7 +33,7 @@ class KegDetail extends React.Component {
     let deleteKegYouSure = false;
     let editKegForm = null;
 
-    if (this.state.viewKegForm) {
+    if (this.state.viewEditKegForm) {
       editKegForm = <KegForm submitHandler={this.handleEditFormSubmission} buttonText="Submit edits." />
     }
     if (this.state.deleteKegPrompt) {
