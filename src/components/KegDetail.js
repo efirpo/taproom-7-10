@@ -18,9 +18,7 @@ class KegDetail extends React.Component {
   }
 
   onClickingToDelete = () => {
-    this.setState({
-      deleteKegPrompt: !this.state.deleteKegPrompt
-    })
+    this.props.showDeleteCheck()
   }
 
   render() {

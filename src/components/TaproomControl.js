@@ -47,13 +47,10 @@ class TaproomControl extends React.Component {
     const thisKeg = this.props.masterKegList[id]
     const { dispatch } = this.props;
     const action = a.selectKeg(thisKeg);
-    console.log(this.props.selectedKeg)
     dispatch(action);
   }
 
   handleClickingToEdit = () => {
-    console.log(this.props.showEditForm)
-    console.table(this.props)
     const { dispatch } = this.props;
     const action = a.toggleEditForm()
     dispatch(action)
@@ -76,8 +73,11 @@ class TaproomControl extends React.Component {
     const action2 = a.selectKeg(editedKeg);
     dispatch(action2);
   }
-  handleClickingShowDelete = () => {
 
+  handleClickingShowDelete = () => {
+    const { dispatch } = this.props;
+    const action = a.toggleDeleteCheck()
+    dispatch(action)
   }
 
   handleClickingDelete = (id) => {
@@ -99,14 +99,12 @@ class TaproomControl extends React.Component {
       const action = a.addKeg(dispatchedKeg)
       dispatch(action)
     }
-
-
   }
 
   render() {
     let kegSelected = null;
     if (this.props.selectedKeg !== {}) {
-      kegSelected = <KegDetail keg={this.props.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingToEdit={this.handleClickingToEdit} onClickingDelete={this.handleClickingDelete} showEditForm={this.props.showEditForm} />
+      kegSelected = <KegDetail keg={this.props.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingToEdit={this.handleClickingToEdit} onClickingDelete={this.handleClickingDelete} showDeleteCheck={this.handleClickingShowDelete} showEditForm={this.props.showEditForm} />
     }
 
     return (
@@ -133,7 +131,8 @@ const mapStateToProps = state => {
   return {
     masterKegList: state.masterKegList,
     selectedKeg: state.selectedKeg,
-    showEditForm: state.showEditForm
+    showEditForm: state.showEditForm,
+    toggleDeleteCheck: state.toggleDeleteCheck
   }
 }
 TaproomControl = connect(mapStateToProps)(TaproomControl)

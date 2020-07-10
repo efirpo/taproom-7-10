@@ -7,7 +7,7 @@ import { combineReducers } from 'redux';
 const rootReducer = combineReducers({
   masterKegList: kegListReducer,
   selectedKeg: selectKegReducer,
-  showEditForm: editFormReducer,
+  showEditForm: editFormReducer
 });
 
 export default rootReducer

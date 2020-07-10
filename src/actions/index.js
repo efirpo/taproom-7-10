@@ -22,3 +22,7 @@ export const selectKeg = keg => ({
 export const toggleEditForm = () => ({
   type: a.TOGGLE_EDIT
 });
+
+export const toggleDeleteCheck = () => ({
+  type: a.TOGGLE_DELETE
+});
