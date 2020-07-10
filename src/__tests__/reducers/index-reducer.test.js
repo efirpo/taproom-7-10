@@ -25,12 +25,17 @@ describe('rootReducer', () => {
       toggleDeleteCheck: false
     })
   })
-  test('Check hat initial state of kegListReducer matches rootReducer', () => {
+  test('Check that initial state of kegListReducer matches rootReducer', () => {
     const action = {
       type: a.ADD_KEG,
       ...testKeg
     }
     store.dispatch(action);
     expect(store.getState().masterKegList).toEqual(kegListReducer(undefined, action))
+  })
+  test('Check that initial state of selectKegReducer matches root', () => {
+    const action = {
+      type: a.SELECT_KEG
+    }
   })
 })
