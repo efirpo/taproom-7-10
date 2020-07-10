@@ -11,7 +11,7 @@ const preLoadState = {
   masterKegList: {},
   showEditForm: false,
   toggleDeleteCheck: false,
-  selectedKeg: {}
+  selectedKeg: false,
 }
 const store = createStore(rootReducer, preLoadState);
 

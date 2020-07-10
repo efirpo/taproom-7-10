@@ -20,7 +20,7 @@ describe('rootReducer', () => {
   test('Should return default state if no action type is passed', () => {
     expect(rootReducer({}, { type: null })).toEqual({
       masterKegList: {},
-      selectedKeg: {},
+      selectedKeg: false,
       showEditForm: false,
       toggleDeleteCheck: false
     })

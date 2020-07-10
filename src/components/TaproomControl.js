@@ -100,8 +100,8 @@ class TaproomControl extends React.Component {
 
   render() {
     let kegSelected;
-    console.log(this.props.selectedKeg)
-    if (this.props.selectedKeg !== {}) {
+    // console.log(this.props.selectedKeg);
+    if (this.props.selectedKeg) {
       kegSelected = <KegDetail
         keg={this.props.selectedKeg}
         onEditSubmit={this.handleClickingEditSubmit}
@@ -109,7 +109,8 @@ class TaproomControl extends React.Component {
         onClickingDelete={this.handleClickingDelete}
         showDeleteCheck={this.handleClickingShowDelete}
         deleteKegPrompt={this.props.toggleDeleteCheck}
-        showEditForm={this.props.showEditForm} />
+        showEditForm={this.props.showEditForm}
+      />
     }
 
     return (
@@ -137,7 +138,7 @@ const mapStateToProps = state => {
     masterKegList: state.masterKegList,
     selectedKeg: state.selectedKeg,
     showEditForm: state.showEditForm,
-    toggleDeleteCheck: state.toggleDeleteCheck
+    toggleDeleteCheck: state.toggleDeleteCheck,
   }
 }
 TaproomControl = connect(mapStateToProps)(TaproomControl)
