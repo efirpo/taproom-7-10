@@ -8,8 +8,8 @@ function KegList(props) {
 
   return (
     <React.Fragment>
-      {props.kegList.map((keg) =>
-        <Keg
+      {Object.values(props.kegList).map((keg) => {
+        return <Keg
           onKegSelect={props.onKegSelect}
           onDrawPint={props.onDrawPint}
           brew={keg.brew}
@@ -19,6 +19,7 @@ function KegList(props) {
           volumeHeld={keg.volumeHeld}
           id={keg.id}
           key={keg.id} />
+      }
       )}
     </React.Fragment>
   )

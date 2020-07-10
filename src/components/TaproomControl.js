@@ -3,7 +3,7 @@ import AddKeg from './AddKeg';
 import KegList from './KegList';
 import KegDetail from './KegDetail';
 import { connect } from 'react-redux';
-import * as a from './../actions/ActionTypes';
+import * as a from './../actions/index';
 
 const fullPageStyles = {
   display: "flex",
@@ -43,15 +43,15 @@ class TaproomControl extends React.Component {
   }
   handleAddingNewKegToStock = (keg) => {
     const { dispatch } = this.props;
-    const action = a.AddKeg(keg);
+    const action = a.addKeg(keg);
     dispatch(action)
   }
 
   handleSelectingKeg = (id) => {
-    const thisKeg = this.state.masterKegList.filter(e => e.id === id)[0]
-    this.setState({
-      selectedKeg: thisKeg
-    })
+    const thisKeg = this.props.masterKegList[id]
+    const { dispatch } = this.props;
+    const action = a.selectKeg(thisKeg);
+    dispatch(action);
   }
 
   handleClickingEditSubmit = (keg) => {
@@ -98,7 +98,7 @@ class TaproomControl extends React.Component {
               <AddKeg onNewKegCreation={this.handleAddingNewKegToStock} />
             </div>
             <div id="list" style={listStyles}>
-              <KegList kegList={this.state.masterKegList} onKegSelect={this.handleSelectingKeg} onDrawPint={this.handleDrawingPint} />
+              <KegList kegList={this.props.masterKegList} onKegSelect={this.handleSelectingKeg} onDrawPint={this.handleDrawingPint} />
             </div>
           </div>
           <div id='details-and-edit' style={detailPageStyles}>
@@ -109,5 +109,12 @@ class TaproomControl extends React.Component {
     )
   }
 }
-TaproomControl = connect()(TaproomControl)
+
+const mapStateToProps = state => {
+  return {
+    masterKegList: state.masterKegList,
+    selectedKeg: state.selectedKeg,
+  }
+}
+TaproomControl = connect(mapStateToProps)(TaproomControl)
 export default TaproomControl;
