@@ -3,7 +3,7 @@ import * as a from './../actions/ActionTypes';
 export default (state = {}, action) => {
   const { brew, brewer, description, volumeHeld, price, showEdit, showDelete, id } = action;
   switch (action.type) {
-    case a.ADD_TICKET:
+    case a.ADD_KEG:
       return Object.assign({}, state, {
         [id]: {
           brew: brew,
@@ -16,5 +16,6 @@ export default (state = {}, action) => {
           id: id
         }
       })
+    default: return state;
   }
 }

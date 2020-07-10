@@ -2,6 +2,8 @@ import React from 'react';
 import AddKeg from './AddKeg';
 import KegList from './KegList';
 import KegDetail from './KegDetail';
+import { connect } from 'react-redux';
+import * as a from './../actions/ActionTypes';
 
 const fullPageStyles = {
   display: "flex",
@@ -40,11 +42,11 @@ class TaproomControl extends React.Component {
 
   }
   handleAddingNewKegToStock = (keg) => {
-    const newMasterKegList = this.state.masterKegList.concat(keg);
-    this.setState({
-      masterKegList: newMasterKegList
-    })
+    const { dispatch } = this.props;
+    const action = a.AddKeg(keg);
+    dispatch(action)
   }
+
   handleSelectingKeg = (id) => {
     const thisKeg = this.state.masterKegList.filter(e => e.id === id)[0]
     this.setState({
@@ -107,5 +109,5 @@ class TaproomControl extends React.Component {
     )
   }
 }
-
+TaproomControl = connect()(TaproomControl)
 export default TaproomControl;

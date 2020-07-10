@@ -1,3 +1,2 @@
-export const ADD_TICKET = 'ADD_TICKET';
-export const SELECT_TICKET = 'SELECT_TICKET';
-export const 
+export const ADD_KEG = 'ADD_KEG';
+export const SELECT_KEG = 'SELECT_KEG';
