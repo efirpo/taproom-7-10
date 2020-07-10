@@ -51,12 +51,24 @@ class TaproomControl extends React.Component {
   }
 
   handleClickingEditSubmit = (keg) => {
-    const newMasterKegList = this.state.masterKegList.map((obj, index) => (obj.id === keg.id ? Object.assign({}, this.state.masterKegList[index], keg) : obj))
-    this.setState({
-      masterKegList: newMasterKegList,
-      selectedKeg: keg
-    })
+    const { dispatch } = this.props;
+    const { brew, brewer, description, price, volumeHeld, showEdit, showDelete, id } = keg
+    const editedKeg = {
+      brew: brew,
+      brewer: brewer,
+      description: description,
+      price: price,
+      volumeHeld: volumeHeld,
+      showEdit: !showEdit,
+      showDelete: showDelete,
+      id: id
+    }
+    const action = a.addKeg(editedKeg);
+    dispatch(action);
+    const action2 = a.selectKeg(editedKeg);
+    dispatch(action2);
   }
+
 
   handleClickingDelete = (id) => {
     const newMasterKegList = this.state.masterKegList.filter(e => e.id !== id)
