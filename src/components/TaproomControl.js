@@ -76,7 +76,9 @@ class TaproomControl extends React.Component {
     const action2 = a.selectKeg(editedKeg);
     dispatch(action2);
   }
+  handleClickingShowDelete = () => {
 
+  }
 
   handleClickingDelete = (id) => {
     const newMasterKegList = this.state.masterKegList.filter(e => e.id !== id)
@@ -87,21 +89,22 @@ class TaproomControl extends React.Component {
   }
 
   handleDrawingPint = (id) => {
-    const thisKeg = this.state.masterKegList.filter(e => e.id === id)[0]
-    const volumeValue = thisKeg.volumeHeld
-    const newVolume = { volumeHeld: volumeValue - 1 }
-    let newMasterKegList = this.state.masterKegList;
+    const thisKeg = this.props.masterKegList[id]
     if (thisKeg.volumeHeld > 0) {
-      newMasterKegList = this.state.masterKegList.map((obj, index) => (obj.id === thisKeg.id ? Object.assign(this.state.masterKegList[index], newVolume) : obj))
+      const { dispatch } = this.props;
+      const dispatchedKeg = {
+        ...thisKeg,
+        volumeHeld: thisKeg.volumeHeld - 1
+      }
+      const action = a.addKeg(dispatchedKeg)
+      dispatch(action)
     }
-    this.setState({
-      masterKegList: newMasterKegList
-    })
+
+
   }
 
   render() {
     let kegSelected = null;
-
     if (this.props.selectedKeg !== {}) {
       kegSelected = <KegDetail keg={this.props.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingToEdit={this.handleClickingToEdit} onClickingDelete={this.handleClickingDelete} showEditForm={this.props.showEditForm} />
     }
