@@ -6,21 +6,15 @@ class KegDetail extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      viewEditKegForm: false,
-      deleteKegPrompt: false
+
     }
   }
   handleEditFormSubmission = (event) => {
     event.preventDefault();
     this.props.onEditSubmit({
-      brew: event.target.brew.value, brewer: event.target.brewer.value, description: event.target.description.value, price: event.target.price.value, volumeHeld: this.props.keg.volumeHeld, id: this.props.keg.id, showEdit: this.props.showEdit, showDelete: this.props.showDelete
+      brew: event.target.brew.value, brewer: event.target.brewer.value, description: event.target.description.value, price: event.target.price.value, volumeHeld: this.props.keg.volumeHeld, id: this.props.keg.id, showDelete: this.props.showDelete
     })
 
-  }
-  onClickingToEdit = () => {
-    this.setState({
-      viewEditKegForm: !this.state.viewEditKegForm
-    })
   }
 
   onClickingToDelete = () => {
@@ -33,7 +27,7 @@ class KegDetail extends React.Component {
     let deleteKegYouSure = false;
     let editKegForm = null;
 
-    if (this.state.viewEditKegForm) {
+    if (this.props.showEditForm) {
       editKegForm = <KegForm submitHandler={this.handleEditFormSubmission} buttonText="Submit edits." />
     }
     if (this.state.deleteKegPrompt) {
@@ -42,12 +36,12 @@ class KegDetail extends React.Component {
 
     return (
       <React.Fragment>
-        <h2>{this.props.brew}</h2>
+        <h2>{this.props.keg.brew}</h2>
         <p>Brewed by: {this.props.keg.brewer}</p>
         <p><em>{this.props.keg.description}</em></p>
         <p>Price per draught: <strong>{this.props.keg.price} gp</strong></p>
         <br /><br /><hr />
-        <button onClick={this.onClickingToEdit}>Edit this Brew.</button>
+        <button onClick={this.props.onClickingToEdit}>Edit this Brew.</button>
         {editKegForm}
         <button onClick={this.onClickingToDelete}>Delete this Brew.</button>
         {deleteKegYouSure}
@@ -60,6 +54,8 @@ class KegDetail extends React.Component {
 KegDetail.propTypes = {
   keg: PropTypes.object,
   onClickingDelete: PropTypes.func,
+  onClickingToEdit: PropTypes.func,
   onEditSubmit: PropTypes.func
 }
+
 export default KegDetail;

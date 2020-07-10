@@ -18,3 +18,7 @@ export const selectKeg = keg => ({
   type: a.SELECT_KEG,
   keg
 });
+
+export const toggleEditForm = () => ({
+  type: a.TOGGLE_EDIT
+});
