@@ -24,5 +24,10 @@ export const toggleEditForm = () => ({
 });
 
 export const toggleDeleteCheck = () => ({
-  type: a.TOGGLE_DELETE
+  type: a.TOGGLE_DELETE,
 });
+
+export const deleteKeg = id => ({
+  type: a.DELETE_KEG,
+  id
+})

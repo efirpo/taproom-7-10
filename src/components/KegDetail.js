@@ -17,18 +17,14 @@ class KegDetail extends React.Component {
 
   }
 
-  onClickingToDelete = () => {
-    this.props.showDeleteCheck()
-  }
-
   render() {
-    let deleteKegYouSure = false;
-    let editKegForm = null;
+    let deleteKegYouSure;
+    let editKegForm;
 
     if (this.props.showEditForm) {
       editKegForm = <KegForm submitHandler={this.handleEditFormSubmission} buttonText="Submit edits." />
     }
-    if (this.state.deleteKegPrompt) {
+    if (this.props.deleteKegPrompt) {
       deleteKegYouSure = <h2 onClick={() => this.props.onClickingDelete(this.props.keg.id)}>Are you sure? This action cannot be undone. Click here to delete.</h2>
     }
 
@@ -41,7 +37,7 @@ class KegDetail extends React.Component {
         <br /><br /><hr />
         <button onClick={this.props.onClickingToEdit}>Edit this Brew.</button>
         {editKegForm}
-        <button onClick={this.onClickingToDelete}>Delete this Brew.</button>
+        <button onClick={this.props.showDeleteCheck}>Delete this Brew.</button>
         {deleteKegYouSure}
 
       </React.Fragment>
@@ -53,7 +49,9 @@ KegDetail.propTypes = {
   keg: PropTypes.object,
   onClickingDelete: PropTypes.func,
   onClickingToEdit: PropTypes.func,
-  onEditSubmit: PropTypes.func
+  onEditSubmit: PropTypes.func,
+  showDeleteCheck: PropTypes.func,
+  showEditForm: PropTypes.bool
 }
 
 export default KegDetail;

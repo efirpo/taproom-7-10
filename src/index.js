@@ -10,6 +10,7 @@ import rootReducer from './reducers/index';
 const preLoadState = {
   masterKegList: {},
   showEditForm: false,
+  toggleDeleteCheck: false,
 }
 const store = createStore(rootReducer, preLoadState);
 

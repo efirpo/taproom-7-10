@@ -75,17 +75,18 @@ class TaproomControl extends React.Component {
   }
 
   handleClickingShowDelete = () => {
+    console.log("TOGGLEDELETECHECK: " + this.props.toggleDeleteCheck)
     const { dispatch } = this.props;
     const action = a.toggleDeleteCheck()
     dispatch(action)
   }
 
   handleClickingDelete = (id) => {
-    const newMasterKegList = this.state.masterKegList.filter(e => e.id !== id)
-    this.setState({
-      masterKegList: newMasterKegList,
-      selectedKeg: null
-    })
+    const { dispatch } = this.props;
+    const action = a.deleteKeg(id)
+    dispatch(action)
+    const action2 = a.selectKeg(null);
+    dispatch(action2)
   }
 
   handleDrawingPint = (id) => {
@@ -104,7 +105,7 @@ class TaproomControl extends React.Component {
   render() {
     let kegSelected = null;
     if (this.props.selectedKeg !== {}) {
-      kegSelected = <KegDetail keg={this.props.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingToEdit={this.handleClickingToEdit} onClickingDelete={this.handleClickingDelete} showDeleteCheck={this.handleClickingShowDelete} showEditForm={this.props.showEditForm} />
+      kegSelected = <KegDetail keg={this.props.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingToEdit={this.handleClickingToEdit} onClickingDelete={this.handleClickingDelete} showDeleteCheck={this.handleClickingShowDelete} deleteKegPrompt={this.props.toggleDeleteCheck} showEditForm={this.props.showEditForm} />
     }
 
     return (
