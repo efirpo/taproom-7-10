@@ -7,7 +7,7 @@ const headerStyles = {
 function Header() {
   return (
     <div style={headerStyles}>
-      <img src={header} alt="header image" />
+      <img src={header} alt="header" />
     </div>
   )
 }

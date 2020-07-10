@@ -32,10 +32,6 @@ const listStyles = {
 }
 
 class TaproomControl extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   handleAddingNewKegToStock = (keg) => {
     const { dispatch } = this.props;
@@ -58,14 +54,13 @@ class TaproomControl extends React.Component {
 
   handleClickingEditSubmit = (keg) => {
     const { dispatch } = this.props;
-    const { brew, brewer, description, price, volumeHeld, showDelete, id } = keg
+    const { brew, brewer, description, price, volumeHeld, id } = keg
     const editedKeg = {
       brew: brew,
       brewer: brewer,
       description: description,
       price: price,
       volumeHeld: volumeHeld,
-      showDelete: showDelete,
       id: id
     }
     const action = a.addKeg(editedKeg);
@@ -104,10 +99,17 @@ class TaproomControl extends React.Component {
   }
 
   render() {
-    let kegSelected = null;
+    let kegSelected;
     console.log(this.props.selectedKeg)
     if (this.props.selectedKeg !== {}) {
-      kegSelected = <KegDetail keg={this.props.selectedKeg} onEditSubmit={this.handleClickingEditSubmit} onClickingToEdit={this.handleClickingToEdit} onClickingDelete={this.handleClickingDelete} showDeleteCheck={this.handleClickingShowDelete} deleteKegPrompt={this.props.toggleDeleteCheck} showEditForm={this.props.showEditForm} />
+      kegSelected = <KegDetail
+        keg={this.props.selectedKeg}
+        onEditSubmit={this.handleClickingEditSubmit}
+        onClickingToEdit={this.handleClickingToEdit}
+        onClickingDelete={this.handleClickingDelete}
+        showDeleteCheck={this.handleClickingShowDelete}
+        deleteKegPrompt={this.props.toggleDeleteCheck}
+        showEditForm={this.props.showEditForm} />
     }
 
     return (

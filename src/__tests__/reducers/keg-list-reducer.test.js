@@ -67,4 +67,22 @@ describe('kegListReducer', () => {
       }
     })
   })
+  test('Should successfully delete a keg', () => {
+    action = {
+      type: 'DELETE_KEG',
+      id: 1
+    }
+    expect(kegListReducer(testState, action)).toEqual({
+      2: {
+        brew: 'Love Potion',
+        brewer: 'Tammy the Enchanter',
+        description: 'Makes you love Tammy.',
+        price: '7',
+        volumeHeld: 124,
+        showEdit: false,
+        showDelete: false,
+        id: 2
+      }
+    })
+  })
 })

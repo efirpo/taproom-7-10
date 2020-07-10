@@ -3,16 +3,11 @@ import PropTypes from 'prop-types';
 import KegForm from './KegForm';
 
 class KegDetail extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
 
-    }
-  }
   handleEditFormSubmission = (event) => {
     event.preventDefault();
     this.props.onEditSubmit({
-      brew: event.target.brew.value, brewer: event.target.brewer.value, description: event.target.description.value, price: event.target.price.value, volumeHeld: this.props.keg.volumeHeld, id: this.props.keg.id, showDelete: this.props.showDelete
+      brew: event.target.brew.value, brewer: event.target.brewer.value, description: event.target.description.value, price: event.target.price.value, volumeHeld: this.props.keg.volumeHeld, id: this.props.keg.id,
     })
 
   }

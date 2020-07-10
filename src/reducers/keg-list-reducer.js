@@ -1,7 +1,7 @@
 import * as a from './../actions/ActionTypes';
 
 export default (state = {}, action) => {
-  const { brew, brewer, description, volumeHeld, price, showDelete, id } = action;
+  const { brew, brewer, description, volumeHeld, price, id } = action;
   switch (action.type) {
     case a.ADD_KEG:
       return Object.assign({}, state, {
@@ -11,7 +11,6 @@ export default (state = {}, action) => {
           description: description,
           volumeHeld: volumeHeld,
           price: price,
-          showDelete: showDelete,
           id: id
         }
       })
